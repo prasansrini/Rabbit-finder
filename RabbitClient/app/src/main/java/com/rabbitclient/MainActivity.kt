@@ -51,8 +51,7 @@ class MainActivity : ComponentActivity() {
 								.apply { placeholder(R.drawable.rabbit4) }
 								.crossfade(true)
 								.build()),
-							contentDescription = "rabbitsimage"
-						)
+							contentDescription = "rabbitsimage")
 
 						Spacer(modifier = Modifier.height(8.dp))
 						Text(
