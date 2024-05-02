@@ -32,6 +32,10 @@ class MainViewModel @Inject constructor(
 					rabbit = api.getRandomRabbit(),
 					isLoading = false
 				)
+				Log.e(
+					TAG,
+					"Rabbit infor: ${_state.value.rabbit}"
+				)
 			} catch (e: Exception) {
 				Log.e(
 					TAG,
