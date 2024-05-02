@@ -17,13 +17,11 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
+import coil.compose.rememberImagePainter
 import com.rabbitclient.ui.theme.RabbitClientTheme
 import com.rabbitclient.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,18 +43,36 @@ class MainActivity : ComponentActivity() {
 					val isLoading = viewModel.state.value.isLoading
 
 					rabbit?.let {
+//						Image(painter = rememberAsyncImagePainter(model = rabbit.imageUrl,
+//							imageLoader = ImageLoader
+//								.Builder(this@MainActivity)
+//								.apply { placeholder(R.drawable.rabbit4) }
+//								.crossfade(true)
+//								.build()),
+//							contentDescription = "rabbitsimage")
+
+//
 						Image(
-							painter = rememberAsyncImagePainter(
-								ImageRequest
-									.Builder(LocalContext.current)
-									.data(data = rabbit.imageUrl)
-									.apply(block = fun ImageRequest.Builder.() {
-										crossfade(true)
-									})
-									.build()
+							painter = rememberImagePainter(
+								data = rabbit.imageUrl,
+								builder = { crossfade(true) }
 							),
 							contentDescription = "Rabbit"
 						)
+
+
+//						Image(
+//							painter = rememberAsyncImagePainter(
+//								ImageRequest
+//									.Builder(LocalContext.current)
+//									.data(data = rabbit.imageUrl)
+//									.apply(block = fun ImageRequest.Builder.() {
+//										crossfade(true)
+//									})
+//									.build()
+//							),
+//							contentDescription = "Rabbit"
+//						)
 						Spacer(modifier = Modifier.height(8.dp))
 						Text(
 							text = rabbit.name,
